@@ -44,6 +44,25 @@ public class Number {
         return new Number(number);
     }
 
+    public static Number add(Number left, Number right) {
+        return Number.of(left.getValue().add(right.getValue()));
+    }
+
+    public static Number subtract(Number left, Number right) {
+        return Number.of(left.getValue().subtract(right.getValue()));
+    }
+
+    public static Number multiply(Number left, Number right) {
+        return Number.of(left.getValue().multiply(right.getValue()));
+    }
+
+    public static Number divide(Number left, Number right) {
+        if (right.getValue().compareTo(BigDecimal.ZERO) == 0) {
+            throw new ArithmeticException("0으로 나눌 수 없습니다.");
+        }
+        return Number.of(left.getValue().divide(right.getValue(), 0, BigDecimal.ROUND_HALF_UP));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass())
